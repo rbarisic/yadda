@@ -1,0 +1,19 @@
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+/usr/bin/ruby2.3 -r ./siteconf20160602-3051-kznvxu.rb extconf.rb
+creating Makefile
+
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR="
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling crypt.c
+compiling bcrypt_ext.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20160602-3051-1xtdu7n

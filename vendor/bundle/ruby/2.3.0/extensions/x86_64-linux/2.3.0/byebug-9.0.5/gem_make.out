@@ -1,0 +1,19 @@
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/byebug-9.0.5/ext/byebug
+/usr/bin/ruby2.3 -r ./siteconf20160602-3051-1kvb5c7.rb extconf.rb
+creating Makefile
+
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/byebug-9.0.5/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/byebug-9.0.5/ext/byebug
+make "DESTDIR="
+compiling locker.c
+compiling byebug.c
+compiling breakpoint.c
+compiling context.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/xiq/rails_projects/fakebook/vendor/bundle/ruby/2.3.0/gems/byebug-9.0.5/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20160602-3051-15epp2u/byebug
