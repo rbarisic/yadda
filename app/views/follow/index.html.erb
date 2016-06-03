@@ -1,0 +1,35 @@
+<div class="window">
+	<% if params[:mode] == 'following' %>
+		<h1>Diese User folgen <%= User.find_by(id: params[:id]).name %></h1>
+	<% else %>
+		<h1>Diesen Usern folgt <%= User.find_by(id: params[:id]).name %></h1>
+	<% end %>
+
+	<% @users.each do |user| %>
+		<% user = User.find_by(id: user) %>
+		<div>
+			<div style="padding: 8px;">
+				<div style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+					<%= link_to user, class: 'user' do %>
+						<img style="width: 48px" src="<%= user.avatar_url %>">
+						<%= user.first_name + ' ' + user.last_name %>
+					<% end %>
+
+					<div>
+						<form action="<%= create_follower_path %>" method="post" data-remote="true">
+							<input type="hidden" id="id" name="id" value="<%= user.id %>">
+
+							<div style="text-align: center; margin-top: 4px; border-top: 1px solid #ddd; padding-top: 8px">
+								<% if is_following(current_user.id, user.id) %>
+									<button id="button-follow-<%= user.id %>" class="pure-button">Unfollowen</button>
+								<% else %>
+									<button id="button-follow-<%= user.id %>" class="pure-button pure-button-primary">Followen</button>
+								<% end %>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

@@ -1,5 +1,5 @@
 <div style="width: 920px; margin: 0 auto;">
-	<h1>Willkommen bei Fakebook</h1>
+	<h1>Willkommen bei Socials</h1>
 	<p style="text-align: center">Melde dich jetzt an, um dein Leben mit deinen Liebsten zu teilen!</p>
 </div>
 
@@ -9,13 +9,16 @@
 	</div>
 
 	<div class="pure-u-1 pure-u-md-1-2">
-		<form action="/sign_up" class="pure-form pure-form-stacked register-form">
+		<form method="post" action="users" class="pure-form pure-form-stacked register-form">
 			<p>Jetzt Registrieren</p>
 
-			<input type="text" placeholder="Vorname"></input>
-			<input type="text" placeholder="Nachname"></input>
-			<input type="text" placeholder="E-Mail Adresse"></input>
-			<input type="text" placeholder="Passwort"></input>
+			<input type="text" placeholder="Vorname" name="user[first_name]"></input>
+			<input type="text" placeholder="Nachname" name="user[last_name]"></input>
+			<br/>
+			<input type="text" placeholder="E-Mail Adresse" name="user[email]"></input>
+			<br/>
+			<input type="password" placeholder="Passwort" name="user[password]"></input>
+			<input type="password" placeholder="Passwort bestätigen" name="user[password_confirmation]"></input>
 			<br/>
 			<input type="submit" class="pure-button pure-button-primary" value="Jetzt registrieren">
 		</form>

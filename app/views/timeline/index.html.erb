@@ -1,0 +1,92 @@
+<div class="pure-g">
+	<div class="pure-u-1 pure-u-lg-1-4">
+		<div class="l-box">
+			<div class="l-box">
+				<h3>Finde Menschen</h3>
+				<p>Kennst du schon...?</p>
+			</div>
+			<div class="pure-g">
+				<% @randoms.each do |random| %>
+					<% if is_following(current_user, random) %>
+						<% break %>
+					<% end %>
+					<div class="pure-u-1 pure-u-md-1-2">
+						<div style="padding: 8px;">
+							<div style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+								<%= link_to random, class: 'random' do %>
+									<img style="width: 48px" src="<%= random.avatar_url %>">
+									<%= shorten(random.first_name + ' ' + random.last_name) %>
+								<% end %>
+
+								<div>
+									<form action="<%= create_follower_path %>" method="post" data-remote="true">
+										<input type="hidden" id="id" name="id" value="<%= random.id %>">
+
+										<div style="text-align: center; margin-top: 4px; border-top: 1px solid #ddd; padding-top: 8px">
+											<% if is_following(current_user.id, random.id) %>
+												<button id="button-follow-<%= random.id %>" class="pure-button">Unfollowen</button>
+											<% else %>
+												<button id="button-follow-<%= random.id %>" class="pure-button pure-button-primary">Followen</button>
+											<% end %>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="pure-u-1 pure-u-lg-1-2">
+		<div class="l-box">
+			<h3>Beiträge</h3>
+			<div style="width: 520px; margin: 2em auto;">
+				<form action="posts" method="post" class="pure-form pure-form-stacked" style="width: 420px; margin: 0 auto;">
+					<legend>Verfasse einen Beitrag</legend>
+					<textarea name="content" class="pure-input-1"></textarea>
+					<input type="submit" value="Veröffentlichen" class="pure-button pure-button-primary pure-input-1" style="padding: 8px">
+				</form>
+
+				<br>
+				<br>
+
+
+					<% @posts.each do |post| %>
+						<div class="post">
+								<p style="font-size: 20px">
+									<%= post.content %>
+								</p>
+								<p style="display: inline; font-size: 12px">Verfasst von <%= link_to post.author.first_name + ' ' + post.author.last_name, post.author %></p>
+								<% if post.creator == current_user.id %>
+									<p style="display: inline; font-size: 12px;">
+										<%= link_to 'löschen', post_path(post), method: 'delete' %>
+									</p>
+								<% end %>
+						</div>
+
+					<% end %>
+
+			</div>
+		</div>		
+	</div>
+	<div class="pure-u-1 pure-u-lg-1-4">
+		<div class="l-box">
+			<h3>Aus deinem Netzwerk</h3>
+			<div class="pure-g">
+				<% current_user.following.shuffle[0..15].each do |following| %>
+					<div class="pure-u-1 pure-u-md-1-2">
+						<div style="padding: 8px;">
+							<div style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+								<%= link_to following, class: 'random' do %>
+									<img style="width: 48px" src="<%= following.avatar_url %>">
+									<%= shorten(following.first_name + ' ' + following.last_name) %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

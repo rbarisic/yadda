@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  get 'timeline', to: 'timeline#index'
+
   get 'welcome/credits'
 
   devise_for :users
 
 
   root "welcome#index"
+
+  resources :users
+  resources :posts
+  
+  post 'follow', to: 'follow#create', as: 'create_follower'
+
+  get 'follows', to: 'follow#index', as: 'follows'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

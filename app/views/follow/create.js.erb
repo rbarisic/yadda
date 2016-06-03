@@ -1,0 +1,58 @@
+//alert('du folgst jetzt <%= @following.first_name %>.')
+
+$('#button-follow-'+ <%= @following.id %>)
+.toggleClass('pure-button-primary')
+.html(function() {
+	var button = $(this)
+	if($(this).html() == 'Followen') {
+		$(this).html('Unfollowen')
+		.append(
+			$('<div style="position: absolute; top: 0; left: ' + $(this).outerWidth() / 2 + 'px; width: 32px; color: #0078e7"><i class="fa fa-heart"></i></div>')
+			.animate({
+				fontSize: 100,
+				left: $($(this).parent()).outerWidth() / 10,
+				top: -100,
+				opacity: 0.0
+			}, 500, function() {
+				$(this).remove();
+			})
+		)
+	} else {
+		var heart = $('<div style="position: absolute; font-size: 40px; opacity: 0, top: -50; left: ' + 40 + 'px; width: 32px; color: #ccc"><i class="fa fa-heart"></i></div>');
+		$(this)
+		.html('Followen')
+		.append(
+			heart
+			.animate({
+				fontSize: 60,
+				opacity: 1,
+				left: 30,
+				top: -60,
+				color: '#999'
+			}, 300, function() {
+				window.setTimeout(function() {
+					
+					heart
+					.animate({
+						left: -50,
+						opacity: 0,
+						'color': '#000'
+					}, 400, function() {
+						$(this).remove();
+					})
+
+					button.append(
+						heart.clone()
+						.animate({
+							opacity: 0,
+							left: 50,
+							'color': '#000'
+						}, 400, function() {
+							$(this).remove();
+						})
+					)
+				}, 120)
+			})
+		)
+	}
+})

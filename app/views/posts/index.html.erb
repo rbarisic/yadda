@@ -1,0 +1,24 @@
+<div class="window">
+	<% if @user.id == current_user.id %>
+		<h1>Deine Posts</h1>
+	<% else %>
+		<h1>Posts von <%= @user.name %></h1>
+	<% end %>
+
+	<hr/>
+
+	<% @posts.each do |post| %>
+		<div class="post" style="margin-top: 30px; padding: 20px 0">
+				<p style="font-size: 20px">
+					<%= post.content %>
+				</p>
+				<p style="display: inline; font-size: 12px">Verfasst von <%= link_to post.author.first_name + ' ' + post.author.last_name, post.author %></p>
+				<% if post.creator == current_user.id %>
+					<p style="display: inline; font-size: 12px;">
+						<%= link_to 'löschen', post_path(post), method: 'delete' %>
+					</p>
+				<% end %>
+		</div>
+	<% end %>
+
+</div>

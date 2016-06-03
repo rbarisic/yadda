@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fakebook</title>
+    <title>Socials</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--[if lte IE 8]>
@@ -20,6 +20,7 @@
 
     <body>
         <%= render 'shared/header' %>
+        <%= @errors %>
         <%= yield %>
     </body>
     </html>

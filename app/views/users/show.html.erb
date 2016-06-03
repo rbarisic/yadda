@@ -1,0 +1,55 @@
+<div class="window">
+
+	<div style="text-align: center">
+		<img style="text-align: center; display: inline-block; margin: 0 auto" src="<%= @user.avatar_url %>">
+	</div>
+	<% if @user.id == current_user.id %>
+		<h1>Dein Profil</h1>
+		<h3 style="text-align: center"><%= @user.first_name + ' ' + @user.last_name%></h3>
+	<% else %>
+		<h1><%= @user.first_name + ' ' + @user.last_name%></h1>
+	<% end %>
+
+	<div style="text-align: center">
+		<div class="folliman">
+			<% if @user.followers.count > 0%>
+				<%= link_to "#{@user.followers.count} Follower", follows_path({id: current_user, mode: 'following'}) %>
+			<% else %>
+				<span><%= @user.followers.count %> Follower</span>
+			<% end %>
+		</div>
+
+
+		<div class="folliman">
+			<% if @user.following.count > 0%>
+				<%= link_to "#{@user.following.count} verfolgt", follows_path({id: current_user, mode: 'followers'}) %>
+			<% else %>
+				<span><%= @user.following.count %> verfolgt</span>
+			<% end %>
+		</div>
+	</div>
+
+	<div style="text-align: center">
+		<%= link_to posts_path({id: @user.id}) do %>
+			<% pluralize @user.posts.count, 'Post', 'Posts' %>
+		<% end %>
+	</div>
+
+	<p style="text-align: center">Registriert seit <%= @user.created_at.year %></p>
+
+	<div style="text-align: center">
+		<form action="<%= create_follower_path %>" method="post" data-remote="true">
+			<input type="hidden" id="id" name="id" value="<%= @user.id %>">
+
+			<% unless @user.id == current_user.id %>
+				<% if is_following(current_user.id, @user.id) %>
+					<button id="button-follow-<%= @user.id %>" class="pure-button">Unfollowen</button>
+				<% else %>
+					<button id="button-follow-<%= @user.id %>" class="pure-button pure-button-primary">Followen</button>
+				<% end %>
+			<% end %>
+		</form>
+	</div>
+
+	<%= link_to "Zurück", :back %>
+</div>
